@@ -1,0 +1,66 @@
+<!--buf += "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<!DOCTYPE HTML>\r\n";
+  buf += "<html lang=\"en\"><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\"/>\r\n";
+  buf += "<title>WebServer ESP8266</title>";
+  buf += "<style>.c{text-align: center;} div,input{padding:5px;font-size:1em;} input{width:80%;} body{text-align: center;font-family:verdana;} button{border:0;border-radius:0.3rem;background-color:#1fa3ec;color:#fff;line-height:2.4rem;font-size:1.2rem;width:100%;} .q{float: right;width: 64px;text-align: right;}</style>";
+  buf += "</head>";
+  buf += "<h3> ESP8266 Web Server</h3>";
+ 
+  //De acordo com o status da GPIO envia o comando
+  if(status_gpio)
+    buf += "<div><h4>Lampada</h4><a href=\"?function=rele_off\"><button>Desligar</button></a></div>";
+  else
+    buf += "<div><h4>Lampada</h4><a href=\"?function=rele_on\"><button>Ligar</button></a></div>";
+ 
+  buf += "<h4>Criado por Pedro Minatel</h4>";
+  buf += "</html>\n";-->
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>CLI - Smart Campus</title>
+	<meta name='viewport' content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;'/>
+	<style>*{ margin: 0; padding: 0; box-sizing: border-box; } #toggle{font-size: 24px;} nav{background-color:#333;text-align: center;}	nav ul{display: none;} a{color: #ccc;text-decoration: none;}</style>
+	<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+	<script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+	<script>
+		google.charts.load('current', { 'packages': ['corechart'] }); google.charts.setOnLoadCallback(drawChart);
+		function drawChart() { var data = google.visualization.arrayToDataTable([ 
+				['Horário', 'Potência', 'Energia'],
+				['15:00', 6.5, 39],
+				['16:00', 7.1, 45],
+				['17:00', 10.3, 74],
+				['18:00', 12.0, 112],
+				['19:00', 13.6, 124],
+				['20:00', 13.8, 121],
+				['21:00', 13.65, 135],
+			]);
+			var options = { title: 'Medias ao longo do dia', legend: { position: 'bottom' }	};
+			var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+			chart.draw(data, options);
+		}
+	</script>
+	<nav role='navigation'><a href="#" id="toggle">=</a>
+		<ul>
+			<li><a href="#">Principal</a></li>
+			<li><a href="#">Gráficos</a></li>
+			<li><a href="#">Ajuda</a></li>
+			<li><a href="#">Sobre</a></li>
+		</ul>
+	</nav>
+	<script>
+	$('nav a#toggle').click(function () {
+			$('ul').slideToggle(200, function () { });
+		});
+	</script>
+</head>
+
+<body>
+	<h3>Controle de Luminosidade Inteligente</h3>
+	<input type='radio' name='op_mode' value='manual'> Manual<br>
+	<input type='radio' name='op_mode' value='auto'> Autom&aacute;tico<br>
+	<br><input type=\"button\" value=\"Ligar LED\" onclick=\"location.href='/on'\">
+	<br><br>
+	<input type=\"button\" value=\"Desligar LED\" onclick=\"location.href='/off'\">
+	<div id='curve_chart' style='width: 900px; height: 500px'></div>
+</body>
+
+</html>
