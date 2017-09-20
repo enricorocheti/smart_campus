@@ -1,17 +1,14 @@
 $(document).ready(function () {
 
-    setTimeout(function() {
-        $("#home").trigger('click');
-    },10);
-
     $('nav a#toggle').click(function () {
         $('ul').slideToggle(200, function () { });
     });
 
     $('#about').click(function () {
+
         $('ul').slideToggle(200, function () { });
+
         var html = '';
-        $('.content').empty();
         html += '<h3 class="title">Sobre</h3>';
         html += '<div>&nbsp;</div>';
         html += '<div class="content-text">';
@@ -20,13 +17,15 @@ $(document).ready(function () {
         html += '	Computa&ccedil;&atilde;o da UNICAMP. ';
         html += '</div>';
         html += '<div>&nbsp;</div>';
-        $('.content').append(html);
+
+        write_content(html);
     });
 
     $('#help').click(function () {
+
         $('ul').slideToggle(200, function () { });
+
         var html = '';
-        $('.content').empty();
         html += '<h3 class="title">Ajuda</h3>';
         html += '<div>&nbsp;</div>';
         html += '<div class="content-text">';
@@ -39,35 +38,18 @@ $(document).ready(function () {
         html += '	&nbsp;&nbsp;&nbsp; Na guia &quot;Gr&aacute;ficos&quot; voc&ecirc; pode visualizar os dados do consumo de energia das l&acirc;mpadas nos &uacute;ltimos ';
         html += '	7 dias em um gr&aacute;fico e as medidas de corrente e pot&ecirc;ncia obtidas nas &uacute;ltimas 24 horas. ';
         html += '</div>';
-        $('.content').append(html);
+
+        write_content(html);
     });
 
-    $('#home').click(function ($event) {
-        if ($event.originalEvent) $('ul').slideToggle(200, function () { });
-        var html = '';
-        $('.content').empty();
-        html += "<h3 class='title'>Controle de Luminosidade Inteligente</h3>";
-        html += "<div>&nbsp;</div>";
-        html += "<div class='content-text'>Conectado a rede: <strong>Eduroam</strong></div>";
-        html += "<div>&nbsp;</div>";
-        html += "<div class='content-text'>Endere&ccedil;o (IP): <strong>192.168.1.53</strong></div>";
-        html += "<div>&nbsp;</div>";
-        html += "<hr>";
-        html += "<div>&nbsp;</div>";
-        html += "<div class='content-text'>Modo de opera&ccedil;&atilde;o:</div>";
-        html += "<input type='radio' name='op-mode' value='auto' class='input-radio' checked><span class='input-radio'>Autom&aacute;tico</span><br>";
-        html += "<input type='radio' name='op-mode' value='manual' class='input-radio'><span class='input-radio'>Manual</span><br>";
-        html += "<div class='op-mode-manual'>";
-        html += "	<div>&nbsp;</div>";
-        html += "	<div>Pot&ecirc;ncia da l&acirc;mpada: <span id='slider-value'>50</span>%</div>";
-        html += "	<div id='slider-range'></div>";
-        html += "	<div style='float:left; margin-top:5px;'>0%</div><div style='float: right;margin-top:5px;'>100%</div>";
-        html += "	<div>&nbsp;</div>";
-        html += "</div>";
-        html += "<div>&nbsp;</div>";
-        html += "<hr>";
-        $('.content').append(html);
+});
 
+function write_content(html, page = '') {
+
+    $('.content').empty();
+    $('.content').append(html);
+
+    if (page == 'home') {
         $('#slider-range').slider({
             value: 50,
             min: 0,
@@ -87,5 +69,5 @@ $(document).ready(function () {
                 $('.op-mode-manual').css('display', 'none');
             }
         });
-    });
-});
+    }
+}
