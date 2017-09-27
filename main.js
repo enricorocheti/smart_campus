@@ -59,6 +59,7 @@ $(document).ready(function () {
                     // AQUI DEVE ENTRAR O CÓDIGO location.href PARA REDIRECIONAR PARA O ARDUINO
                     $('#slider-value').empty();
                     $('#slider-value').append(ui.value);
+                    $.get('?pot='+ui.value, function() { });
                 }
             });
     
