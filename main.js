@@ -64,10 +64,12 @@ $(document).ready(function () {
     
             $('input[type=radio][name=op-mode]').change(function () {
                 if (this.value == 'manual') {
-                    location.href = '/#manual';
+                    //location.href = '/#manual';
+                    $.get('manual', function() { });
                     $('.op-mode-manual').css('display', 'inline');
                 } else {
-                    location.href = '/?auto';
+                    //location.href = '/?auto';
+                    $.get('auto', function() { });
                     $('.op-mode-manual').css('display', 'none');
                 }
             });
