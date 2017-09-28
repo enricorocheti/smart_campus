@@ -1,51 +1,76 @@
 $(document).ready(function () {
-    
-        $('nav a#toggle').click(function () {
-            $('ul').slideToggle(200, function () { });
-        });
-    
-        $('#about').click(function () {
-    
-            $('ul').slideToggle(200, function () { });
-    
-            $('.content_home').css('display','none');
-            $('.content_chart').css('display','none');
-            $('.content_help').css('display','none');
-            $('.content_about').css('display','inline');
 
-        });
-    
-        $('#help').click(function () {
-    
-            $('ul').slideToggle(200, function () { });
-    
-            $('.content_home').css('display','none');
-            $('.content_chart').css('display','none');
-            $('.content_help').css('display','inline');
-            $('.content_about').css('display','none');
-        });
-
-        $('#home').click(function () {
-    
-            $('ul').slideToggle(200, function () { });
-    
-            $('.content_home').css('display','inline');
-            $('.content_chart').css('display','none');
-            $('.content_help').css('display','none');
-            $('.content_about').css('display','none');
-        });
-
-        $('#chart').click(function () {
-    
-            $('ul').slideToggle(200, function () { });
-    
-            $('.content_home').css('display','none');
-            $('.content_chart').css('display','inline');
-            $('.content_help').css('display','none');
-            $('.content_about').css('display','none');
-        });
-    
+    $('nav a#toggle').click(function () {
+        $('ul').slideToggle(200, function () { });
     });
+
+    $('#about').click(function () {
+
+        $('ul').slideToggle(200, function () { });
+
+        $('.content_home').css('display', 'none');
+        $('.content_chart').css('display', 'none');
+        $('.content_help').css('display', 'none');
+        $('.content_about').css('display', 'inline');
+
+    });
+
+    $('#help').click(function () {
+
+        $('ul').slideToggle(200, function () { });
+
+        $('.content_home').css('display', 'none');
+        $('.content_chart').css('display', 'none');
+        $('.content_help').css('display', 'inline');
+        $('.content_about').css('display', 'none');
+    });
+
+    $('#home').click(function () {
+
+        $('ul').slideToggle(200, function () { });
+
+        $('.content_home').css('display', 'inline');
+        $('.content_chart').css('display', 'none');
+        $('.content_help').css('display', 'none');
+        $('.content_about').css('display', 'none');
+    });
+
+    $('#chart').click(function () {
+
+        $('ul').slideToggle(200, function () { });
+
+        $('.content_home').css('display', 'none');
+        $('.content_chart').css('display', 'inline');
+        $('.content_help').css('display', 'none');
+        $('.content_about').css('display', 'none');
+    });
+
+    $('#slider-range').slider({
+        value: 50,
+        min: 0,
+        max: 100,
+        animate: 'fast',
+        change: function (event, ui) {
+            // AQUI DEVE ENTRAR O CÓDIGO location.href PARA REDIRECIONAR PARA O ARDUINO
+            $('#slider-value').empty();
+            $('#slider-value').append(ui.value);
+            $.get('?pot=0' + ui.value, function () { });
+        }
+    });
+
+    $('input[type=radio][name=op-mode]').change(function () {
+        if (this.value == 'manual') {
+            $('#slider-range').slider('value', 50);
+            $.get('?manual', function () { });
+            $('.op-mode-manual').css('display', 'inline');
+
+        } else {
+            $.get('?auto', function () { });
+            $('.op-mode-manual').css('display', 'none');
+        }
+    });
+
+});
 
     /*function getTime() {
         return ['0h15','0h30','0h45','1h00','1h15','1h30','1h45','2h00','2h15','2h30','2h45','3h00',
@@ -57,7 +82,8 @@ $(document).ready(function () {
         '18h15','18h30','18h45','19h00','19h15','19h30','19h45','20h00','20h15','20h30','20h45','21h00',
         '21h15','21h30','21h45','22h00','22h15','22h30','22h45','23h00','23h15','23h30','23h45','0h00']
     }*/
-    
+
+    /*
     function write_content(html, page = '') {
     
         $('.content').empty();
@@ -99,6 +125,7 @@ $(document).ready(function () {
 
             $('#about').click(function () {
                 $.get('?about', function() { });
-            });*/
+            });
         }
-    }
+    }*/
+
