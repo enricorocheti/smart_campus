@@ -76,11 +76,11 @@ $(document).ready(function () {
     
             $('input[type=radio][name=op-mode]').change(function () {
                 if (this.value == 'manual') {
-                    //location.href = '/#manual';
+                    $('#slider-range').slider('value',50);
                     $.get('?manual', function() { });
                     $('.op-mode-manual').css('display', 'inline');
+
                 } else {
-                    //location.href = '/?auto';
                     $.get('?auto', function() { });
                     $('.op-mode-manual').css('display', 'none');
                 }
