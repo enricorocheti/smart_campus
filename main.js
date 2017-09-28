@@ -9,6 +9,7 @@ $(document).ready(function () {
         $('ul').slideToggle(200, function () { });
 
         $('.content_home').css('display', 'none');
+        $('.content_calibrate').css('display', 'none');
         $('.content_chart').css('display', 'none');
         $('.content_help').css('display', 'none');
         $('.content_about').css('display', 'inline');
