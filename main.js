@@ -89,5 +89,13 @@ $(document).ready(function () {
             $('#charts').click(function () {
                 $.get('?chart', function() { });
             });
+
+            $('#help').click(function () {
+                $.get('?help', function() { });
+            });
+
+            $('#about').click(function () {
+                $.get('?about', function() { });
+            });
         }
     }
