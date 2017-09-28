@@ -20,6 +20,7 @@ $(document).ready(function () {
         $('ul').slideToggle(200, function () { });
 
         $('.content_home').css('display', 'none');
+        $('.content_calibrate').css('display', 'none');
         $('.content_chart').css('display', 'none');
         $('.content_help').css('display', 'inline');
         $('.content_about').css('display', 'none');
@@ -30,6 +31,7 @@ $(document).ready(function () {
         $('ul').slideToggle(200, function () { });
 
         $('.content_home').css('display', 'inline');
+        $('.content_calibrate').css('display', 'none');
         $('.content_chart').css('display', 'none');
         $('.content_help').css('display', 'none');
         $('.content_about').css('display', 'none');
@@ -40,10 +42,32 @@ $(document).ready(function () {
         $('ul').slideToggle(200, function () { });
 
         $('.content_home').css('display', 'none');
+        $('.content_calibrate').css('display', 'none');
         $('.content_chart').css('display', 'inline');
         $('.content_help').css('display', 'none');
         $('.content_about').css('display', 'none');
     });
+
+    $('#calibrate').click(function () {
+
+        $('ul').slideToggle(200, function () { });
+
+        $('.content_home').css('display', 'none');
+        $('.content_calibrate').css('display', 'inline');
+        $('.content_chart').css('display', 'none');
+        $('.content_help').css('display', 'none');
+        $('.content_about').css('display', 'none');
+
+    });
+
+    $('#calibrate_aceso').click(function () {
+        $.get('?calibrate_aceso', function () { });
+    });
+
+    $('#calibrate_apagado').click(function () {
+        $.get('?calibrate_apagado', function () { });
+    });
+    
 
     $('#slider-range').slider({
         value: 50,
