@@ -86,7 +86,7 @@ $(document).ready(function () {
                 }
             });
 
-            $('#charts').click(function () {
+            /*$('#charts').click(function () {
                 $.get('?chart', function() { });
             });
 
@@ -96,6 +96,6 @@ $(document).ready(function () {
 
             $('#about').click(function () {
                 $.get('?about', function() { });
-            });
+            });*/
         }
     }
